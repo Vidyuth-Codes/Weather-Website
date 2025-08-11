@@ -1,0 +1,166 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+/* Basic Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0f172a;
+    background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #e2e8f0;
+    transition: padding 0.5s ease-in-out;
+}
+
+#app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: all 0.5s ease-in-out;
+}
+
+/* --- STATE 1: INITIAL (Centered Search) --- */
+#app-container.initial-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+#app-container.initial-state .logo {
+    display: none; /* Hide logo in initial state */
+}
+
+#app-container.initial-state header {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#app-container.initial-state .weather-content-wrapper {
+    display: none; /* Hide weather content initially */
+}
+
+
+/* --- STATE 2: ACTIVE (Full Dashboard) --- */
+#app-container.active-state {
+    padding: 2rem;
+}
+
+#app-container.active-state .weather-content-wrapper {
+    display: block;
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Header and Search */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+}
+
+.search-bar {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px 0 0 50px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: #cbd5e1;
+}
+
+.search-bar button {
+    padding: 0.75rem 1.25rem;
+    border-radius: 0 50px 50px 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+}
+
+.search-bar button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Main Current Weather Section */
+.current-weather {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+}
+
+.weather-info { flex: 2; }
+.city-name { font-size: 2.5rem; font-weight: 500; }
+.weather-description { font-size: 1.2rem; font-weight: 300; margin-bottom: 1rem; opacity: 0.8; }
+.temperature-container { display: flex; align-items: center; }
+.temperature { font-size: 6rem; font-weight: 700; line-height: 1; }
+.weather-icon-large { width: 150px; height: 150px; margin-left: -20px; }
+.details-panel { flex: 1; background: rgba(0, 0, 0, 0.2); padding: 1.5rem; border-radius: 15px; min-width: 250px; }
+.details-panel h2 { margin-bottom: 1rem; font-weight: 500; }
+.details-panel ul { list-style: none; }
+.details-panel ul li { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.details-panel ul li:last-child { border-bottom: none; }
+.details-panel ul li span:first-child { opacity: 0.8; }
+
+/* Error Message */
+.error-message {
+    background-color: #7f1d1d;
+    color: #fecaca;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 2rem;
+    display: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #app-container.active-state { padding: 1rem; }
+    .current-weather { padding: 1.5rem; }
+    .city-name { font-size: 2rem; }
+    .temperature { font-size: 5rem; }
+    .weather-icon-large { width: 120px; height: 120px; }
+}
